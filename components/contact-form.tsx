@@ -42,7 +42,7 @@ export default function ContactForm() {
 
   return (
     <section className='relative isolate'>
-      {/* Background pattern */}
+      {/* Background pattern
       <svg
         className='absolute inset-0 -z-10 h-full w-full stroke-zinc-200 opacity-75 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)] dark:stroke-zinc-700'
         aria-hidden='true'
@@ -75,7 +75,7 @@ export default function ContactForm() {
           strokeWidth={0}
           fill='url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)'
         />
-      </svg>
+      </svg> */}
 
       {/* Form */}
       <div className='relative'>
@@ -122,7 +122,7 @@ export default function ContactForm() {
             {/* Message */}
             <div className='sm:col-span-2'>
               <Textarea
-                rows={4}
+                rows={6}
                 placeholder='Message'
                 {...register('message')}
               />
@@ -140,7 +140,7 @@ export default function ContactForm() {
               disabled={isSubmitting}
               className='w-full disabled:opacity-50'
             >
-              {isSubmitting ? 'Submitting...' : 'Contact Us'}
+              {isSubmitting ? 'Submitting...' : 'Let\'s Talk'}
             </Button>
           </div>
           <p className='mt-4 text-xs text-muted-foreground'>

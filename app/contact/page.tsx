@@ -1,7 +1,7 @@
 import ContactForm from '@/components/contact-form'
 import React from 'react'
 
-const Contact = () => {
+const ContactPage = () => {
   return (
     <section className='pb-24 pt-40'>
       <div className='container max-w-5xl'>
@@ -13,4 +13,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default ContactPage

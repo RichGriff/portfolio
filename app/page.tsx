@@ -1,3 +1,4 @@
+import Contact from "@/components/contact";
 import { GridBackgroundDemo } from "@/components/grid-basckground";
 import Intro from "@/components/intro";
 import NewsletterForm from "@/components/newsletter.form";
@@ -12,7 +13,8 @@ export default function Home() {
         <Intro />
         <RecentPosts />
         <RecentProjects />
-        <NewsletterForm />
+        {/* <NewsletterForm /> */}
+        <Contact />
       </div>
     </section>
   )

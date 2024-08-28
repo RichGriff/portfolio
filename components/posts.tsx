@@ -10,9 +10,9 @@ export default function Posts({ posts }: { posts: PostMetadata[] }) {
         <li key={post.slug}>
           <Link
             href={`/posts/${post.slug}`}
-            className='flex flex-col justify-between gap-x-4 gap-y-1 sm:flex-row'
+            className='flex flex-col justify-between gap-x-4 gap-y-1 sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-900/30 transition-all duration-500 p-6 rounded-lg group'
           >
-            <div className='max-w-lg'>
+            <div className='max-w-lg group-hover:translate-x-1 duration-300'>
               <p className='text-lg font-semibold'>{post.title}</p>
               <p className='mt-1 line-clamp-2 text-sm font-light text-muted-foreground'>
                 {post.summary}
