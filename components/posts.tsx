@@ -17,6 +17,13 @@ export default function Posts({ posts }: { posts: PostMetadata[] }) {
               <p className='mt-1 line-clamp-2 text-sm font-light text-muted-foreground'>
                 {post.summary}
               </p>
+              <div className='flex justify-start items-center gap-2 my-4'>
+                {post.tags?.map(tag => (
+                  <span key={tag} className="inline-flex items-center rounded-md bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {post.publishedAt && (

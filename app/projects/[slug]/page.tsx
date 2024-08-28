@@ -6,6 +6,7 @@ import MDXContent from '@/components/mdx-content'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
 import { getProjectBySlug, getProjects } from '@/lib/projects'
 import { notFound } from 'next/navigation'
+import ProjectLinks from '@/components/project-links'
 
 export async function generateStaticParams() {
   const projects = await getProjects()
@@ -27,11 +28,11 @@ export default async function Project({
   }
 
   const { metadata, content } = project
-  const { title, image, author, publishedAt } = metadata
+  const { title, image, author, publishedAt, websiteUrl, codeUrl } = metadata
 
   return (
     <section className='pb-24 pt-32'>
-      <div className='container max-w-3xl'>
+      <div className='container max-w-5xl'>
         <Link
           href='/projects'
           className='mb-8 inline-flex items-center gap-2 text-sm font-light text-muted-foreground transition-colors hover:text-foreground'
@@ -56,9 +57,10 @@ export default async function Project({
           <p className='mt-3 text-xs text-muted-foreground'>
             {author} / {formatDate(publishedAt ?? '')}
           </p>
+          <ProjectLinks websiteUrl={websiteUrl} codeUrl={codeUrl} />
         </header>
 
-        <main className='prose mt-16 dark:prose-invert'>
+        <main className='prose mt-16 dark:prose-invert max-w-full'>
           <MDXContent source={content} />
         </main>
       </div>

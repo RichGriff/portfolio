@@ -16,6 +16,7 @@ export type PostMetadata = {
   image?: string
   publishedAt?: string
   slug: string
+  tags?: string[]
 }
 
 

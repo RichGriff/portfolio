@@ -3,6 +3,7 @@ import { highlight } from 'sugar-high'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import Counter from '@/components/counter'
+import ProjectLinks from '@/components/project-links'
 
 function Code({ children, ...props }: any) {
   let codeHTML = highlight(children)
