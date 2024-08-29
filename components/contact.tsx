@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 const Contact = () => {
   return (
-    <section className='pb-24 relative'>
+    <section id='contact' className='pb-24 relative'>
       <GridBackgroundDemo />
       <div className=''>
         <h2 className='title'>Let&apos;s talk about your project</h2>

@@ -14,13 +14,13 @@ export default function Header() {
 
         <ul className='flex items-center gap-6 text-sm font-light text-muted-foreground sm:gap-10'>
           <li className='transition-colors hover:text-foreground'>
-            <Link href='/posts'>Posts</Link>
+            <Link href='#posts' scroll={true}>Posts</Link>
           </li>
           <li className='transition-colors hover:text-foreground'>
-            <Link href='/projects'>Projects</Link>
+            <Link href='#projects' scroll={true}>Projects</Link>
           </li>
           <li className='transition-colors hover:text-foreground'>
-            <Link href='/contact'>Contact</Link>
+            <Link href="#contact" scroll={true}>Contact</Link>
           </li>
         </ul>
 
