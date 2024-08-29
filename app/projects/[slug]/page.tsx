@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { formatDate } from '@/lib/utils'
 import MDXContent from '@/components/mdx-content'
-import { ArrowLeftIcon } from '@radix-ui/react-icons'
+import { ArrowLeftIcon, ChatBubbleIcon, GroupIcon } from '@radix-ui/react-icons'
 import { getProjectBySlug, getProjects } from '@/lib/projects'
 import { notFound } from 'next/navigation'
 import ProjectLinks from '@/components/project-links'
@@ -28,7 +28,7 @@ export default async function Project({
   }
 
   const { metadata, content } = project
-  const { title, image, author, publishedAt, websiteUrl, codeUrl } = metadata
+  const { title, image, author, publishedAt, websiteUrl, codeUrl, contribute } = metadata
 
   return (
     <section className='pb-24 pt-32'>
@@ -57,7 +57,12 @@ export default async function Project({
           <p className='mt-3 text-xs text-muted-foreground'>
             {author} / {formatDate(publishedAt ?? '')}
           </p>
-          <ProjectLinks websiteUrl={websiteUrl} codeUrl={codeUrl} />
+          <div className='flex justify-start items-center gap-2'>
+            <ProjectLinks websiteUrl={websiteUrl} codeUrl={codeUrl} />
+            {contribute && <span className="inline-flex items-center rounded-md bg-emerald-400/10 px-3 py-2 text-sm font-medium text-emerald-500 ring-1 ring-inset ring-emerald-400/20">
+              <ChatBubbleIcon className='mr-2'/>Contributor
+            </span>}
+          </div>
         </header>
 
         <main className='prose mt-16 dark:prose-invert max-w-full'>

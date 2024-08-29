@@ -19,6 +19,7 @@ export type ProjectMetadata = {
   websiteUrl?: string
   codeUrl?: string
   stack?: string[]
+  contribute?: boolean
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {

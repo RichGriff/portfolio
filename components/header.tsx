@@ -8,7 +8,7 @@ export default function Header() {
       <nav className='container flex max-w-5xl items-center justify-between'>
         <div>
           <Link href='/' className='font-serif text-2xl font-bold'>
-            RG.
+            RG<span className='text-emerald-500'>.</span>
           </Link>
         </div>
 
