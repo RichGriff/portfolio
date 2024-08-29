@@ -11,8 +11,14 @@ export default function Posts({ posts }: { posts: PostMetadata[] }) {
     <ul 
       className='flex flex-col gap-8'
     >
-      {posts.map(post => (
-        <li key={post.slug}>
+      {posts.map((post, index) => (
+        <motion.li 
+          key={post.slug}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+        >
           <Link
             href={`/posts/${post.slug}`}
             className='flex flex-col justify-between gap-x-4 gap-y-1 sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-900/30 transition-all duration-500 p-6 rounded-lg group'
@@ -37,7 +43,7 @@ export default function Posts({ posts }: { posts: PostMetadata[] }) {
               </p>
             )}
           </Link>
-        </li>
+        </motion.li>
       ))}
     </ul>
   )

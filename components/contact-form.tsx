@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { sendEmail } from '@/lib/actions'
+import { motion } from 'framer-motion'
 
 type Inputs = z.infer<typeof ContactFormSchema>
 
@@ -78,7 +79,13 @@ export default function ContactForm() {
       </svg> */}
 
       {/* Form */}
-      <div className='relative'>
+      <motion.div 
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className='relative'
+      >
         <form
           onSubmit={handleSubmit(processForm)}
           className='mt-16 lg:flex-auto'
@@ -150,7 +157,7 @@ export default function ContactForm() {
             </Link>
           </p>
         </form>
-      </div>
+      </motion.div>
     </section>
   )
 }
