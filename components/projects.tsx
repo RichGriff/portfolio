@@ -1,8 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { ProjectMetadata } from '@/lib/projects'
 import { formatDate } from '@/lib/utils'
+import TechStackItem from './tech-stack'
 
 export default function Projects({
   projects
@@ -54,13 +57,7 @@ export default function Projects({
                 </p>
                 <div className='py-4 flex justify-start items-center gap-4'>
                   {project.stack?.map(stack => (
-                    <Image
-                      key={stack}
-                      src={`/images/logos/${stack}.svg`}
-                      alt=''
-                      width={stack === 'mongo' ? 14 : 28}
-                      height={28}
-                    />
+                    <TechStackItem key={stack} stack={stack} />
                   ))}
                 </div>
               </div>
