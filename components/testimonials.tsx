@@ -43,7 +43,7 @@ export default function Testimonials({ }) {
       <h2 className='title mb-2'>Testimonials</h2>
       <p className='mt-3 font-light text-muted-foreground mb-16'>I have worked with some amazing people</p>
       <ul 
-        className='grid grid-cols-2 gap-6'
+        className='grid grid-cols-1 md:grid-cols-2 gap-6'
       >
         {testimonials.map((testimonial, index) => (
           <motion.li 
