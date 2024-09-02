@@ -1,0 +1,148 @@
+---
+  title: Getting Started with Framer Motion in Next.js Using Tailwind CSS
+  summary: MDX is a powerful tool that allows you to write JSX in your Markdown files. This post will introduce you to the basics of MDX.
+  image: /images/posts/introduction-to-mdx.webp
+  author: 'Richard Griffiths'
+  publishedAt: '2024-09-02'
+  tags: ['Nextjs', 'TailwindCSS', 'Framer Motion']
+---
+
+When building modern web applications, smooth animations can enhance the user experience by making interactions more engaging and intuitive. Framer Motion is a popular React animation library that makes it easy to create such animations. In this guide, we’ll walk through setting up Framer Motion in a Next.js project using Tailwind CSS for styling.
+
+## Prerequisites
+Before we begin, ensure you have the following installed:
+
+- Node.js: Make sure you have Node.js installed on your machine.
+- Next.js Project: You should have a Next.js project set up. If not, we’ll create one in this guide.
+- Tailwind CSS: We’ll integrate Tailwind CSS for styling.
+
+## Step 1: Setting Up the Next.js Project
+First, let’s create a new Next.js project. Open your terminal and run:
+
+```bash
+npx create-next-app@latest my-framer-motion-app
+cd my-framer-motion-app
+```
+
+This will scaffold a new Next.js project for you.
+
+## Step 2: Installing Tailwind CSS
+Next, we’ll install Tailwind CSS. Follow these steps:
+
+Install Tailwind CSS and its dependencies:
+
+```bash
+npm install tailwindcss postcss autoprefixer
+```
+
+Initialize Tailwind CSS by running:
+
+```bash
+npx tailwindcss init -p
+```
+This will generate tailwind.config.js and postcss.config.js files.
+
+Update the tailwind.config.js file to include the paths to your files:
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+In your ./styles/globals.css, add the following Tailwind directives:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## Step 3: Installing Framer Motion
+Now, let’s install Framer Motion:
+
+```bash
+npm install framer-motion
+```
+
+With this, you’re ready to start animating your components!
+
+## Step 4: Creating an Animated Component
+Let’s create a simple component that uses Framer Motion to animate a box.
+
+Create a new file in the components directory called AnimatedBox.js:
+
+```bash
+mkdir components
+touch components/AnimatedBox.js
+```
+
+In AnimatedBox.js, add the following code:
+
+```javascript
+import { motion } from 'framer-motion';
+
+export default function AnimatedBox() {
+  return (
+    <motion.div
+      className="w-32 h-32 bg-blue-500"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+    >
+      <p className="text-center text-white">Hello!</p>
+    </motion.div>
+  );
+}
+```
+
+Here, we are using Framer Motions motion.div to create an animated div. The box will rotate 360 degrees continuously.
+
+## Step 5: Using the Animated Component
+Finally, let’s use this component in a page. Open pages/index.js and update it as follows:
+
+```javascript
+import Head from 'next/head';
+import AnimatedBox from '../components/AnimatedBox';
+
+export default function Home() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      <Head>
+        <title>Framer Motion with Tailwind CSS</title>
+        <meta name="description" content="A basic Framer Motion example with Tailwind CSS in Next.js" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="flex flex-col items-center justify-center">
+        <h1 className="text-3xl font-bold mb-8">Framer Motion + Tailwind CSS</h1>
+        <AnimatedBox />
+      </main>
+    </div>
+  );
+}
+```
+This code sets up a simple page with a centered title and our animated box component.
+
+## Step 6: Running the Project
+Now, you can run the project to see your animated component in action:
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to http://localhost:3000. You should see a rotating blue box with the text "Hello!" in the center of the screen.
+
+## Conclusion
+In this guide, we walked through how to set up Framer Motion in a Next.js project styled with Tailwind CSS. With Framer Motion’s simple API and Tailwind’s utility-first styling, you can create smooth, responsive animations that enhance the user experience.
+
+Feel free to experiment with more complex animations and explore Framer Motion’s documentation for additional features and capabilities!
+
+Happy coding!
