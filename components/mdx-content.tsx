@@ -10,9 +10,23 @@ function Code({ children, ...props }: any) {
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
+function Image({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      style={{
+        borderRadius: '8px',
+      }}
+      {...props}
+    />
+  )
+}
+
 const components = {
   code: Code,
-  Counter
+  Counter,
+  img: Image,
 }
 
 export default function MDXContent(

@@ -10,50 +10,39 @@
   contribute: true
 ---
 
-This is a portfolio website built with NextJs and MDX. It uses the `@next/mdx`
-package to render MDX content in NextJs pages.
+This is a collaboration project with The Alan Turing Insitute on their Trustworthy and Ethical Assurance platform. The aim of this project was to take their initial prototype and build a more modern and collaborative design to better their user's experience. Also enhancing the project with new features such as login third party providers and libe collaboration.
 
 ## Features
 
-- **MDX Support**: Write content in MDX format.
-- **Syntax Highlighting**: Code blocks are syntax highlighted.
-- **Custom Components**: Use custom components in your MDX files.
-- **Responsive Design**: The website is responsive and works on all devices.
+- **Assurance Cases**: Create and manage assurance cases.
+- **Sharing & Collaboration**: Share cases with other users with different levels of access. 
+- **Login with GitHub**: Use your GitHub account to login to use the platform.
+- **Interactive Diagram**: Manage the assurance by adding new elements to the diagram, or move them to other elements. 
+- **Responsive Design**: New modern and mobile friendly design.
 
 ## Technologies
 
 - **NextJs**: A React framework for building static and dynamic websites.
-- **MDX**: A file format that allows you to write JSX in your Markdown files.
 - **Tailwind CSS**: A utility-first CSS framework for building custom designs.
-- **Vercel**: A cloud platform for static sites and serverless functions.
+- **Docker**: Application container and deployment
+- **Reactflow**: A customizable React component for building node-based editors and interactive diagrams.
+- **Next Auth.js**: Authentication for Next.js applications used for 3rd party providers. 
+- **Python**:  A high-level, general-purpose programming language.
 
-## Getting Started
+## Challenges and Solutions
 
-To get started with this project, you can clone the repository and install the
-dependencies:
+#### Challenge 1: Find a better way of displaying the assurance case diagram.
 
-```bash
-git clone
-cd next-mdx-portfolio
-npm install
-```
+It was important to replace the original diagram tool to something more user friendly and that we could easily adapt into the new design. Another requirement here was to use an open source library, so that other developers could pick this up and evolve in the future if needed. I was tasked to take these requirements and find the best tool and how I can provide a solution that ticked all the boxes. 
 
-Once the dependencies are installed, you can run the development server:
+This is when I came across ReactFlow a Javascript based diagram library that would fit most of the requirements. However, some features were hidden behind a license (no scope for additional spending) so I had manually code these in, for example the toggling feature that collapses all child elements. 
 
-```bash
-npm run dev
-```
 
-The development server will start at `http://localhost:3000`.
+## Screenshots/Demos
 
-## Deployment
-
-To deploy this project, you can use Vercel. You can link your GitHub repository
-to Vercel and deploy the project with a single click.
+![Diagram of an Assurance Case](/images/projects/assurance-case.png)
+*Diagram of an Assurance Case*
 
 ## Conclusion
 
-This portfolio website is a great example of how you can use NextJs and MDX to
-build a modern website with dynamic content. By combining the power of NextJs
-and MDX, you can create interactive and engaging websites that are easy to
-maintain and update.
+This was a really fun project to work on and has given me some knowledge and understanding when working with some digram tools such as ReactFlow, as this was something completely new to me. Keen to see how this application evolves, as I know interactivity could be improved when working with the diagram, allowing users to create nodes directly from a parent. 
