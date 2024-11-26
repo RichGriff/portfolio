@@ -8,12 +8,13 @@ import Image from 'next/image'
 
 const testimonials = [
   {
-    body: 'Laborum quis quam. Dolorum et ut quod quia. Voluptas numquam delectus nihil. Aut enim doloremque et ipsam.',
+    body: 'Rich is an excellent and creative web developer. He has extensive knowledge of modern frameworks, such as Next.js, and is quick to learn new frameworks to ensure he can collaborate with other members of a project.',
     author: {
-      name: 'Leslie Alexander',
-      handle: 'lesliealexander',
+      name: 'Christopher Burr',
+      handle: 'christopherburr',
       imageUrl:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'https://media.licdn.com/dms/image/v2/C4D03AQE9TNahvjiftw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1538394979935?e=1738195200&v=beta&t=GI9FuImQAX2rmNZDd-5jvdNvIeM6K4Zk6vQhOkBg-rc',
+      social: 'https://www.linkedin.com/in/christopherdburr/'
     },
   },
   {
@@ -22,7 +23,7 @@ const testimonials = [
       name: 'Jospeh Jones',
       handle: 'JJones',
       imageUrl:
-        'https://images.unsplash.com/photo-1542190891-2093d38760f2?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+        'https://media.licdn.com/dms/image/v2/D4E03AQFUuIh_GDIm8g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1687868140445?e=1738195200&v=beta&t=5X4O0PGl9Sghc31FrZNHOspjmbojwEzeV1mUe_3lUzs'
     },
   },
   {
@@ -54,7 +55,7 @@ export default function Testimonials({ }) {
             transition={{ duration: 0.6, delay: index * 0.2 }}
           >
             <Link
-              href={`#`}
+              href={testimonial.author.social ?? '#'}
               className='flex flex-col justify-between gap-x-4 gap-y-1 sm:flex-row hover:bg-gray-50 dark:hover:bg-slate-900/30 transition-all duration-500 p-6 rounded-lg group'
             >
               <div className='flex justify-start items-start gap-6'>
@@ -68,7 +69,7 @@ export default function Testimonials({ }) {
                 </div>
               
                 <div className='max-w-full group-hover:translate-x-1 duration-300'>
-                  <blockquote className="line-clamp-4 text-base font-light text-foreground mb-4">
+                  <blockquote className="text-base font-light text-foreground mb-4">
                     <p>{`“${testimonial.body}”`}</p>
                   </blockquote>
                   <div className="font-semibold text-foreground">{testimonial.author.name}</div>
