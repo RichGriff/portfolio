@@ -10,6 +10,8 @@
   contribute: false
 ---
 
+import Collapsible from './components/Collapsible';
+
 ## About this project
 The organisation wanted to update their public facing website to provide a better user experience for potential customers and stakeholders. Their old solution was built using WordPress and was very cluttered with content that was out dated and not maintained. 
 
@@ -35,8 +37,7 @@ The business reached out to an external branding company ([Toward](https://towar
 
 ## Challenges and Solutions
 
-### Challenge 1: Multi environment deployment with Docker
-
+<Collapsible title="Challenge 1: Multi-environment Deployment with Docker">
 At the outset, we recognized the need for a staging environment to facilitate iterative feature sign-offs throughout the project. This staging environment would also support ongoing development after the website’s initial launch. To achieve this, we implemented a structured approach to manage multiple environments using Docker, with the following project folder organization:
 
 ```
@@ -91,6 +92,9 @@ make build-staging
 
 This setup not only facilitated faster image builds but also provided a robust and repeatable process for deploying and maintaining multiple environments seamlessly.
 
+</Collapsible>
+
+<Collapsible title="Challenge 2: Implementing Page Previews from a Headless CMS">
 ### Challenge 2: Implementing Page Previews from a Headless CMS
 
 To ensure users could preview their content changes before publishing, we sought to implement a preview feature for our website. However, existing plugins in the Strapi marketplace did not meet our requirements, so we developed a custom plugin tailored to our needs. This involved creating a Strapi plugin and integrating it with our frontend to render draft data effectively.
@@ -225,3 +229,5 @@ In draft mode, the page fetches data using the secret created by the plugin. Thi
 3. Frontend Adaptation: Modifying the dynamic page logic enabled seamless integration of draft data with the existing frontend.
 
 This feature empowered users to confidently review changes before publishing, ensuring a smooth and reliable content workflow.
+</Collapsible>
+

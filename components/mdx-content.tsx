@@ -3,7 +3,7 @@ import { highlight } from 'sugar-high'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import Counter from '@/components/counter'
-import ProjectLinks from '@/components/project-links'
+import { Collapsible } from './collapsible'
 
 function Code({ children, ...props }: any) {
   let codeHTML = highlight(children)
@@ -27,6 +27,7 @@ const components = {
   code: Code,
   Counter,
   img: Image,
+  Collapsible
 }
 
 export default function MDXContent(
