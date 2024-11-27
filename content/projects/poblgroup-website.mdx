@@ -1,0 +1,227 @@
+---
+  title: Pobl Group Website
+  summary: Website for company along with CMS and a customer portal.
+  image: /images/projects/poblgroup.jpg
+  author: 'Richard Griffiths'
+  publishedAt: '2023-11-17'
+  websiteUrl: 'https://poblgroup.co.uk/'
+  # codeUrl: 'https://github.com/RichGriff/docs-manager'
+  stack: ['nextjs', 'typescript', 'tailwindcss', 'strapi', 'nodejs', 'docker']
+  contribute: false
+---
+
+## About this project
+The organisation wanted to update their public facing website to provide a better user experience for potential customers and stakeholders. Their old solution was built using WordPress and was very cluttered with content that was out dated and not maintained. 
+
+The business reached out to an external branding company ([Toward](https://toward.studio/)) to help with the design with an in house team (myself and another colleague) to develop the website along with a new customer portal. 
+
+
+## Features
+
+- **Modern Website**: New look and feel with a clean looking design.
+- **Headless CMS**: Easy to use cms for staff to maintain content.
+- **Page Builder**: Allow staff to easily build site pages they want them. 
+- **Page Preview**: Provide users to preview their page before publishing.
+- **Customer Portal**: Ability for housing customers to be able to self serve.
+- **Integerate into Dynamics CRM**: Real time updates sent and received from organisations CRM system.
+
+## Technologies
+
+- **NextJs**: A React framework for building static and dynamic websites.
+- **Tailwind CSS**: A utility-first CSS framework for building custom designs.
+- **Strapi**: Customisable headless CMS solution (self hosted).
+- **Azure & Docker**: Hosting platform and deployement with CI/CD.
+- **NodeJs with Exress**: For developing a RESTful API to allow for integration with Dynamics and other 3rd party applications.
+
+## Challenges and Solutions
+
+### Challenge 1: Multi environment deployment with Docker
+
+At the outset, we recognized the need for a staging environment to facilitate iterative feature sign-offs throughout the project. This staging environment would also support ongoing development after the website’s initial launch. To achieve this, we implemented a structured approach to manage multiple environments using Docker, with the following project folder organization:
+
+```
+├── actions
+├── app
+├── docker
+│   ├── production
+│   │   ├── Dockerfile
+│   │   └── docker-compose.yml
+│   ├── staging
+│   │   ├── Dockerfile
+│   │   └── docker-compose.yml
+├── components
+├── .env.local
+├── .env.staging
+├── .env.production
+└── Makefile
+```
+
+This structure allowed us to leverage corresponding .env files in each Dockerfile to set environment-specific variables reliably.
+
+```Dockerfile
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps --link /app/node_modules ./node_modules
+COPY --link . .
+COPY --link .env.staging .env.production
+RUN yarn build
+```
+
+To streamline the process of building Docker images and managing containers for each environment, we utilized a Makefile in conjunction with docker compose. This approach enabled the execution of build and deployment commands directly from the project’s root directory, reducing complexity and improving efficiency. 
+
+```Makefile
+.PHONY: build-staging
+build-staging:
+	docker compose -f docker/staging/docker-compose.yml build
+
+.PHONY: start-staging
+start-staging:
+	docker compose -f docker/staging/docker-compose.yml up -d
+
+.PHONY: stop-staging
+stop-staging:
+	docker compose -f docker/staging/docker-compose.yml down
+```
+
+For instance, building the Docker image for the staging environment could be accomplished simply by running:
+
+```bash
+make build-staging
+```
+
+This setup not only facilitated faster image builds but also provided a robust and repeatable process for deploying and maintaining multiple environments seamlessly.
+
+### Challenge 2: Implementing Page Previews from a Headless CMS
+
+To ensure users could preview their content changes before publishing, we sought to implement a preview feature for our website. However, existing plugins in the Strapi marketplace did not meet our requirements, so we developed a custom plugin tailored to our needs. This involved creating a Strapi plugin and integrating it with our frontend to render draft data effectively.
+
+> ⚠️ Note: Implementing this feature involved multiple steps. Below, we highlight key lessons and code snippets. Full implementation details can be found in the GitHub repository linked above.
+
+---
+
+#### Plugin Development
+
+We began by scaffolding a custom Strapi plugin (refer to the Strapi documentation for detailed instructions on creating a plugin). The next step was to create a user interface component to trigger the preview functionality. This component, PreviewLink, allows users to preview content for specific collections.
+
+```jsx
+const PreviewLink = () => {
+  const { slug, modifiedData } = useCMEditViewDataManager();
+  let type;
+  let showPreview = false;
+
+  // Chossing which collections can have this feature enabled
+  switch (slug) {
+    case "api::post.post":
+      type = "post";
+      showPreview = true;
+      break;
+    case "api::page.page":
+      type = "page";
+      showPreview = true;
+      break;
+    default:
+      break;
+  }
+
+  return (
+    <>
+      {showPreview && (
+        <Box paddingTop={5}>
+          <Typography variant="sigma" textColor="neutral600" id="preview label">
+            Page Preview
+          </Typography>
+          <Box paddingTop={2}>
+            <Divider />
+          </Box>
+          <LinkButton
+            size="S"
+            startIcon={<Eye />}
+            onClick={() => handlePreview(modifiedData, type)}
+            rel="noopener noreferrer"
+            title="page preview"
+            style={{
+              width: "100%",
+              marginTop: "1rem",
+              textDecoration: "none",
+              display: "flex",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+          >
+            Page Preview
+          </LinkButton>
+        </Box>
+      )}
+    </>
+  );
+};
+```
+
+The button triggers the handlePreview function, which creates a new preview record in the database.
+
+---
+
+#### Preview Handling
+
+The handlePreview function deletes any previous preview records for the given content and creates a new record using the modified data entered by the user. It then redirects the user to the frontend application with a unique secret to fetch and display the draft content.
+
+```js
+const handlePreview = async (modifiedData, type) => {
+  // Delete any previous records for this collection record id
+  await deletePreviousPreviews(modifiedData.id, type);
+
+  // Create a new record with the 'modifiedData' - this will be the new data entered into the form by the user
+  const { data } = await createPreviewRecord(modifiedData, type);
+
+  // Redirect the user to our frontend application with the secret returned from our saved data
+  window.open(
+    `${CLIENT_FRONTEND_URL}/api/preview?secret=${data.secret}&type=${type}`,
+    "_blank"
+  );
+};
+```
+
+The secret ensures a secure and unique reference for fetching preview data on the frontend.
+
+> Note: The deletePreviousPreviews and createPreviewRecord functions interact with custom API endpoints defined in the plugin's route.ts file.
+
+---
+
+#### Frontend Integration
+
+On the frontend, we modified the dynamic page rendering logic to handle draft data. Using next/headers and cookies, we set draft mode and retrieve the secret from a cookie. This enables the page to fetch and render the draft content for preview.
+
+```js
+import { cookies, draftMode } from 'next/headers';
+import { getPreviewData } from '@/actions/getPreviewData';
+
+const Page = async ({ params }: { params: { path: [] } }) => {
+    const { isEnabled } = draftMode();
+    const cookieStore = cookies();
+    const secret = cookieStore.get('secret');
+    let data: any | null = null;
+
+    if (isEnabled && secret) {
+        data = await getPreviewData(secret.value);
+    }
+
+    return (
+        <>
+            <PageLayout>
+                <PageContent path={path} isPreview={isEnabled} data={data} />
+            </PageLayout>
+        </>
+    );
+};
+
+export default Page;
+```
+
+In draft mode, the page fetches data using the secret created by the plugin. This draft data is then rendered instead of the published content.
+
+#### Key Takeaways
+1. Custom Plugin Development: Developing a custom plugin allowed us to extend Strapi’s functionality beyond existing marketplace offerings.
+2. Secure Preview Handling: The use of unique secrets ensured secure and accurate data retrieval for previews.
+3. Frontend Adaptation: Modifying the dynamic page logic enabled seamless integration of draft data with the existing frontend.
+
+This feature empowered users to confidently review changes before publishing, ensuring a smooth and reliable content workflow.
