@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getProjects } from '@/lib/projects'
 import Projects from '@/components/projects'
+import { SectionHeading } from './section-heading'
 
 export default async function RecentProjects() {
   const projects = await getProjects(4)
@@ -8,7 +9,7 @@ export default async function RecentProjects() {
   return (
     <section id="projects" className='pb-24'>
       <div>
-        <h2 className='title mb-12'>Recent projects</h2>
+        <SectionHeading heading='Recent projects' />
         <Projects projects={projects} />
 
         <Link

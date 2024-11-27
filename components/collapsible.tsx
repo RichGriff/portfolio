@@ -12,13 +12,13 @@ export const Collapsible = ({ title, children } : CollapsibleProps) => {
 
   return (
     <div className="mb-4">
-      <button
+      <div
         onClick={() => setIsOpen(!isOpen)}
-        className="text-lg text-white font-semibold"
+        className="text-lg text-white font-semibold hover:cursor-pointer"
       >
         {title}
         <span className="ml-2">{isOpen ? '-' : '+'}</span>
-      </button>
+      </div>
       {isOpen && <div className="mt-2 text-white">{children}</div>}
     </div>
   );
