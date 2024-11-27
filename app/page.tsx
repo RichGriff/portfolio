@@ -12,8 +12,8 @@ export default function Home() {
       <GridBackgroundDemo />
       <div className='container max-w-5xl'>
         <Intro />
-        <RecentPosts />
         <RecentProjects />
+        <RecentPosts />
         {/* <NewsletterForm /> */}
         <Testimonials />
         <Contact />
