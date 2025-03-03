@@ -11,6 +11,8 @@
   contribute: true
 ---
 
+import Collapsible from './components/Collapsible';
+
 This is a collaboration project with The Alan Turing Insitute on their Trustworthy and Ethical Assurance platform. The aim of this project was to take their initial prototype and build a more modern and collaborative design to better their user's experience. Also enhancing the project with new features such as login third party providers and libe collaboration.
 
 ## Features
@@ -32,12 +34,13 @@ This is a collaboration project with The Alan Turing Insitute on their Trustwort
 
 ## Challenges and Solutions
 
-#### Challenge 1: Find a better way of displaying the assurance case diagram.
+<Collapsible title="Challenge 1: Find a better way of displaying the assurance case diagram">
 
 It was important to replace the original diagram tool to something more user friendly and that we could easily adapt into the new design. Another requirement here was to use an open source library, so that other developers could pick this up and evolve in the future if needed. I was tasked to take these requirements and find the best tool and how I can provide a solution that ticked all the boxes. 
 
 This is when I came across ReactFlow a Javascript based diagram library that would fit most of the requirements. However, some features were hidden behind a license (no scope for additional spending) so I had manually code these in, for example the toggling feature that collapses all child elements. 
 
+</Collapsible>
 
 ## Screenshots/Demos
 

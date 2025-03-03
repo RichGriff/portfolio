@@ -20,6 +20,12 @@ const nextConfig = {
         port: '',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.turing.ac.uk',
+        port: '',
+        pathname: '**',
+      },
     ],
   },
   output: "standalone",

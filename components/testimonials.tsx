@@ -13,28 +13,30 @@ const testimonials = [
       name: 'Christopher Burr',
       handle: 'christopherburr',
       imageUrl:
-        'https://media.licdn.com/dms/image/v2/C4D03AQE9TNahvjiftw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1538394979935?e=1738195200&v=beta&t=GI9FuImQAX2rmNZDd-5jvdNvIeM6K4Zk6vQhOkBg-rc',
+        'https://www.turing.ac.uk/sites/default/files/styles/people/public/2019-11/chris_burr.jpeg?itok=M7mzTmq4',
+      // imageUrl:
+      //   'https://media.licdn.com/dms/image/v2/C4D03AQE9TNahvjiftw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1538394979935?e=1738195200&v=beta&t=GI9FuImQAX2rmNZDd-5jvdNvIeM6K4Zk6vQhOkBg-rc',
       social: 'https://www.linkedin.com/in/christopherdburr/'
     },
   },
   {
-    body: 'Excepteur consectetur deserunt id incididunt veniam mollit officia sint qui aute duis sit cillum. Reprehenderit fugiat amet aliqua in commodo minim sunt laborum.',
+    body: 'Rich is an exceptional senior developer with expertise in MS Power Platform, MS Dynamics, NextJS, and JavaScript. His mentorship goes beyond providing solutions—he encourages exploration and continuous learning, fostering growth in junior developers. His collaborative approach and leadership make him an invaluable asset to any team.',
     author: {
-      name: 'Jospeh Jones',
-      handle: 'JJones',
+      name: 'Terry Cheng',
+      handle: 'TerryCheng',
       imageUrl:
-        'https://media.licdn.com/dms/image/v2/D4E03AQFUuIh_GDIm8g/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1687868140445?e=1738195200&v=beta&t=5X4O0PGl9Sghc31FrZNHOspjmbojwEzeV1mUe_3lUzs'
+        'https://images.unsplash.com/photo-1527888134035-745830ac26fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fG1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D'
     },
   },
-  {
-    body: 'Distinctio facere aliquam est qui atque sint molestias ad. Fuga consequuntur asperiores voluptatum ipsum.',
-    author: {
-      name: 'Mes Raymano',
-      handle: 'MessiRay',
-      imageUrl:
-        'https://images.unsplash.com/photo-1594032107547-3ce7d496c8ab?q=80&fit=facearea&facepad=2&w=256&h=256&q=80&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-  },
+  // {
+  //   body: 'Distinctio facere aliquam est qui atque sint molestias ad. Fuga consequuntur asperiores voluptatum ipsum.',
+  //   author: {
+  //     name: 'Mes Raymano',
+  //     handle: 'MessiRay',
+  //     imageUrl:
+  //       'https://images.unsplash.com/photo-1594032107547-3ce7d496c8ab?q=80&fit=facearea&facepad=2&w=256&h=256&q=80&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  //   },
+  // },
   // More testimonials...
 ]
 
