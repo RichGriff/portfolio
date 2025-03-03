@@ -53,7 +53,7 @@ export default function Intro() {
           className='relative w-[175px] h-[175px] md:w-[300px] md:h-[300px]'
         >
           <Image
-            className='rounded-lg grayscale aspect-square object-cover'
+            className='rounded-lg aspect-square object-cover'
             src={authorImage}
             alt='Richard Griffiths'
             fill
