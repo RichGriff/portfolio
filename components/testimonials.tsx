@@ -25,19 +25,20 @@ const testimonials = [
       name: 'Terry Cheng',
       handle: 'TerryCheng',
       imageUrl:
-        'https://images.unsplash.com/photo-1527888134035-745830ac26fd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fG1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D'
+        'https://media.licdn.com/dms/image/v2/D4D03AQE39yzaRY689w/profile-displayphoto-shrink_800_800/B4DZS45K3wH0Ak-/0/1738268782691?e=1754524800&v=beta&t=hXNgtkW6dW9ABwBqg3fllKontC5RL6Jy-koxRjHywVw',
+        social: 'https://www.linkedin.com/in/terryhycheng/'
     },
   },
-  // {
-  //   body: 'Distinctio facere aliquam est qui atque sint molestias ad. Fuga consequuntur asperiores voluptatum ipsum.',
-  //   author: {
-  //     name: 'Mes Raymano',
-  //     handle: 'MessiRay',
-  //     imageUrl:
-  //       'https://images.unsplash.com/photo-1594032107547-3ce7d496c8ab?q=80&fit=facearea&facepad=2&w=256&h=256&q=80&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  //   },
-  // },
-  // More testimonials...
+  {
+    body: 'Richard is a 10/10 developer, with a high level of technical and inter-personal expertise. Would highly recommend working with him on your next project or having him on your team!',
+    author: {
+      name: 'Marlon Dedakis',
+      handle: 'marlon-dedakis',
+      imageUrl:
+        'https://media.licdn.com/dms/image/v2/D4E03AQFUuIh_GDIm8g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1687868140445?e=1754524800&v=beta&t=ju74HWYB3I1xeUKd4i8LaTzqfykpsURf-bFbdtx6zZM',
+        social: 'https://www.linkedin.com/in/marlon-dedakis/'
+    },
+  }
 ]
 
 export default function Testimonials({ }) {

@@ -5,10 +5,11 @@ import { useState } from 'react';
 interface CollapsibleProps {
   title: string
   children: React.ReactNode
+  open?: boolean
 }
 
-export const Collapsible = ({ title, children } : CollapsibleProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const Collapsible = ({ title, children, open = false } : CollapsibleProps) => {
+  const [isOpen, setIsOpen] = useState(open);
 
   return (
     <div className="mb-4">

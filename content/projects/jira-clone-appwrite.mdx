@@ -1,0 +1,124 @@
+---
+  title: Jira Clone with Appwrite
+  summary: Project creating a simple task management application while learning Appwrite.
+  image: /images/projects/jira-appwrite.jpg
+  author: 'Richard Griffiths'
+  publishedAt: '2025-06-05'
+  websiteUrl: 'https://appwrite-jira-clone.vercel.app/'
+  codeUrl: 'https://github.com/RichGriff/appwrite-jira-clone'
+  stack: ['nextjs', 'tailwindcss']
+  contribute: false
+---
+
+import Collapsible from './components/Collapsible';
+
+This project was around creating a simple task management application using some of the latest and greatest technologies. I wanted to use this opportunity to gain some knowledge around hosted backend services such as [Appwrite](https://appwrite.io/).
+
+> Appwrite is an end-to-end backend server for Web, Mobile, Native, or Backend apps packaged as a set of Docker microservices. Appwrite abstracts the complexity and repetitiveness required to build a modern backend API from scratch and allows you to build secure apps faster.
+
+## Features
+
+- **Multi-Tenant**: Allowing users to create a workspace and add projects and members specific to this tenant/workspace.
+- **Collaboration with Members**: Share access and invite other users to collaborate on tasks.
+- **Various Login Providers**: Use common login providers to fit users preference.
+- **User Access**: Manage members access to certain projects within the workspace.
+- **Task Managment**: User can create and update tasks and link them to a project.
+- **Kanban Board**: Provide a kanban board to easily update and move tasks.
+- **Real-time Data Updates**: Stats are autmatically updated when task statuses change.
+
+## Technologies
+
+- **NextJs**: A React framework for building static and dynamic websites.
+- **Tailwind CSS**: A utility-first CSS framework for building custom designs.
+- **ShadCN UI**: Popular UI component library for easy customisations.
+- **Appwrite**: Backend API services. Database and Authentication management.
+- **Hono**: Used to replace Next.js api file routing with code routing.
+- **Tanstack Query**: Query library for managing server state in React applications
+
+## Challenges and Solutions
+
+<Collapsible title="Challenge: Implementing Hono in Next.js">
+
+I had come across Hono as a standalone solution for creating API endpoints in a basic Http server using Bun, but never really got my hands on it. My previous experience with API's had been working with Node and Express and I very much liked that approach. So I wanted to take this opportunity to create code based routing endpoints with Hono inside of Next.js.
+
+I worked out that I could use Next's dynamic routing to catch all requests being made to `/api`.
+
+```
+app
+├── api
+│   ├── [[...route]]
+│       ├── route.ts
+├── (auth)
+│   ├── page.tsx
+├── (dashboard)
+│   ├── page.tsx
+└── (profile)
+```
+
+My main `route` file then needed to contain a new Hono app where I could then define all my routes for my various features.
+
+```ts
+import auth from '@/features/auth/server/route'
+// other imports
+
+const app = new Hono().basePath('/api')
+
+const routes = app
+  .route('/auth', auth)
+  .route('/workspaces', workspaces)
+  .route('/members', members)
+  .route('/projects', projects)
+  .route('/tasks', tasks)
+
+export const GET = handle(app)
+export const POST = handle(app)
+export const PATCH = handle(app)
+export const DELETE = handle(app)
+
+export type AppType = typeof routes
+```
+
+</Collapsible>
+
+<Collapsible title="Challenge: Learning Appwrite">
+
+In the most part Appwrite was very easy to implement following their documentation. It was nice to manage to platform to use for managing backend services where authentication providers are handled well. The interface for creating database collections is very clean and simple to use - just need to ensure you are copying those`collection ids` and using them where needed. 
+
+You have to use the `Apprwrite Client` for interacting with appwrite and there can be two options here:
+- **createAdminClient**: For interacting with Appwrite and performing actions as an admin.
+- **createSessionClient**: Handling user interactions when fetching data. 
+
+The later is used to fetch data from appwrite and taking into the permissions that have been set on that collection. 
+
+Making requests to Appwrite via Hono was very simple, below is an example of fetching a list of projects:
+
+```ts
+const projects = await databases.listDocuments<Project>(
+  DATABASE_ID, // Database ID
+  PROJECTS_ID, // Collection ID
+  [
+    // Only returning projects associated with this workspace id
+    Query.equal('workspaceId', workspaceId),
+    Query.orderDesc('$createdAt')
+  ]
+)
+```
+
+</Collapsible>
+
+## Screenshots/Demos
+
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <div>
+    <img src="/images/projects/jira-appwrite-modal.png" alt="Workspace Creation Popup" className='rounded-md'/>
+    <p className="text-sm italic">Workspace Creation Popup</p>
+  </div>
+  <div>
+    <img src="/images/projects/jira-appwrite-invite.png" alt="Members Invitation Link" className='rounded-md'/>
+    <p className="text-sm italic">Members Invitation Link</p>
+  </div>
+  <div>
+    <img src="/images/projects/jira-appwrite-tasks.png" alt="List of all tasks" className='rounded-md'/>
+    <p className="text-sm italic">List of all tasks in the project</p>
+  </div>
+</div>
