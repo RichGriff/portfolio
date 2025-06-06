@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { Skeleton } from './ui/skeleton';
 
 // Define types for stack keys
-type StackType = 'mongo' | 'react' | 'nextjs' | 'nodejs' | 'docker' | 'javascript' | 'redux' | 'tailwindcss' | 'typescript' | 'prisma' | 'strapi' | 'python';
+type StackType = 'mongo' | 'react' | 'nextjs' | 'nodejs' | 'docker' | 'javascript' | 'redux' | 'tailwindcss' | 'typescript' | 'prisma' | 'strapi' | 'python' | 'appwrite' | 'payload' | 'shadcn' | 'hono';
 
 // Define image mappings for light and dark themes
 const logoImages: Record<StackType, { light: string, dark: string }> = {
@@ -22,6 +22,10 @@ const logoImages: Record<StackType, { light: string, dark: string }> = {
   prisma: { light: '/images/logos/prisma-light.svg', dark: '/images/logos/prisma-dark.svg' },
   strapi: { light: '/images/logos/strapi-light.svg', dark: '/images/logos/strapi-dark.svg' },
   python: { light: '/images/logos/python-light.svg', dark: '/images/logos/python-dark.svg' },
+  appwrite: { light: '/images/logos/appwrite.svg', dark: '/images/logos/appwrite.svg' },
+  payload: { light: '/images/logos/payload-light.svg', dark: '/images/logos/payload-dark.svg' },
+  shadcn: { light: '/images/logos/shadcn-light.svg', dark: '/images/logos/shadcn-dark.svg' },
+  hono: { light: '/images/logos/hono.svg', dark: '/images/logos/hono.svg' },
 };
 
 const TechStackItem = ({ stack } : { stack: string }) => {
