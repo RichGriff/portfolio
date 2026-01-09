@@ -25,7 +25,7 @@ const testimonials = [
       name: 'Terry Cheng',
       handle: 'TerryCheng',
       imageUrl:
-        'https://avatars.githubusercontent.com/u/35667554?v=4',
+        'https://media.licdn.com/dms/image/v2/D4D03AQE39yzaRY689w/profile-displayphoto-shrink_800_800/B4DZS45K3wH0Ak-/0/1738268782691?e=1769644800&v=beta&t=g-53s7l5dB4b_Jl7xRAZ7dnI2BTqx7G5aRr2IOQM_nU',
         social: 'https://www.linkedin.com/in/terryhycheng/'
     },
   },
@@ -35,7 +35,7 @@ const testimonials = [
       name: 'Marlon Dedakis',
       handle: 'marlon-dedakis',
       imageUrl:
-        'https://avatars.githubusercontent.com/u/16643940?v=4',
+        'https://media.licdn.com/dms/image/v2/D4E03AQFUuIh_GDIm8g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1687868140445?e=1769644800&v=beta&t=PMzu3DLhuCptFB6ha2M6hFNZoq3RLb6C8Nfpj2wkp2w',
         social: 'https://www.linkedin.com/in/marlon-dedakis/'
     },
   }
