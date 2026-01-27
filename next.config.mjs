@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const webpack = require("webpack");
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -28,7 +30,21 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Provide crypto polyfill for browser
+      config.resolve.fallback = {
+        crypto: require.resolve("crypto-browserify"),
+      };
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          Buffer: ["buffer", "Buffer"],
+        })
+      );
+    }
+    return config;
+  },
   // output: "standalone",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
