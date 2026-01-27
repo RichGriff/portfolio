@@ -2,7 +2,7 @@
 import Link from 'next/link'
 
 import { PostMetadata } from '@/lib/posts'
-import { formatDate } from '@/lib/utils'
+import { formatDate, generateUUID } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -51,7 +51,7 @@ export default function Testimonials({ }) {
       >
         {testimonials.map((testimonial, index) => (
           <motion.li 
-            key={crypto.randomUUID()}
+            key={generateUUID()}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -12,3 +12,12 @@ export function formatDate(date: string) {
     year: 'numeric'
   })
 }
+
+export function generateUUID() {
+  // If crypto.randomUUID exists (Node 19+ or modern browser)
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  // Fallback for older browsers or any environment (Coolify)
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
