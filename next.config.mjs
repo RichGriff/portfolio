@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const webpack = require("webpack");
+import { ProvidePlugin } from "webpack";
 
 const nextConfig = {
   images: {
@@ -37,7 +37,7 @@ const nextConfig = {
         crypto: require.resolve("crypto-browserify"),
       };
       config.plugins.push(
-        new webpack.ProvidePlugin({
+        new ProvidePlugin({
           Buffer: ["buffer", "Buffer"],
         })
       );
@@ -47,4 +47,4 @@ const nextConfig = {
   // output: "standalone",
 };
 
-module.exports = nextConfig;
+export default nextConfig;
